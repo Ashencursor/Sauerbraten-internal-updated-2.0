@@ -16,10 +16,10 @@ BOOL WINAPI newThread(HMODULE hModule) {
     while (true) {
         Hacks::checkHack();
         for (int i = 0; i < 31; ++i) {
-
             Entity* entity = reinterpret_cast<Entity*>(Hacks::entityList[i]);
-            // Check if the entity is valid before accessing it
             if (entity) {
+
+                // Check if the entity is valid before accessing it
                 std::cout << entity->name << '\n'; // Ensure name is null-terminated
             }
         }
