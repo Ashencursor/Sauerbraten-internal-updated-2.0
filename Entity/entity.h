@@ -41,9 +41,9 @@ public:
 
 
 	//IF I am out of a match or something this will not work because my health could be anything ect
-	explicit operator bool() const {
-		 return isAlive && displayHealth > 0 && displayHealth < 1000 && this != nullptr;
-	}
+	//explicit operator bool() const {
+		// return isAlive && displayHealth > 0 && displayHealth < 1000 && this != nullptr;
+	//}
 
 	//bool isPlayerValid(Entity* entity);
 	//bool isGood(Entity* entity);
