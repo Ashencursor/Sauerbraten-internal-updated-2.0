@@ -3,6 +3,8 @@
 #include "../hacks/hacks.h"
 #include "../Entity/entity.h"
 
+class Entity;
+
 namespace Check
 {
 	bool isPlayerValid(Entity* entity);

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "hacks/hacks.h"
-
+#include "hook/hook.h"
 // dllmain.cpp : Defines the entry point for the DLL application.
 
 
@@ -12,20 +12,15 @@ BOOL WINAPI newThread(HMODULE hModule) {
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout); // Redirect stdout to the console
 
-
+    
     while (true) {
+
         Hacks::checkHack();
-
-        for (int i = 0; i < 31; ++i) {
-            Entity* entity = reinterpret_cast<Entity*>(Hacks::entityList[i]);
-            if (entity == nullptr) {
-                break;
-                std::cout << "break\n";
-            }
-            // Check if the entity is valid before accessing it
-            std::cout << entity->name << '\n'; // Ensure name is null-terminated
-
+        Entity* entity = reinterpret_cast<Entity*>(Hacks::entityList[0]);
+        if (entity) {
+            entity->yaw++;
         }
+        
         Sleep(100);
     }
 

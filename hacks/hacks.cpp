@@ -1,6 +1,6 @@
 #include "../pch.h"
 #include "hacks.h"
-
+#include "../hook/hook.h"
 
 namespace Hacks {
 
@@ -16,6 +16,9 @@ namespace Hacks {
 			Entity* entity = reinterpret_cast<Entity*>(entityList[i]);
 			if (!entity)
 				continue;
+			if (entity->team == Hacks::localPlayer->team)
+				continue;
+			
 			float distance = localPlayer->position.distance(entity->position);
 			if (distance < closestDist) {
 				closestDist = distance;
@@ -29,22 +32,33 @@ namespace Hacks {
 	void checkHack() {
 		//Testing
 		if (GetAsyncKeyState(VK_F2) & 1) {
-			toggles::rapidFire = !toggles::rapidFire;
+			Globals::rapidFire = !Globals::rapidFire;
 			Sleep(1);//Prevent GetAsyncKeyState to be called multiple times and run twice
 		}
 		//In developement
 		if (GetAsyncKeyState(VK_F3) & 1) {
-			toggles::noRecoil = !toggles::noRecoil;
+			Globals::noRecoil = !Globals::noRecoil;
 			Sleep(1);
 		}
 		if (GetAsyncKeyState(VK_F4) & 1) {
-			toggles::aimbot = !toggles::aimbot;
+			Globals::aimbot = !Globals::aimbot;
+			Sleep(1);
+		}
+		if (Globals::aimbot) {
+			aimbot();
+		}
+		if (GetAsyncKeyState(VK_F5) & 1) {
+			Globals::isHooked = Globals::isHooked;
+			if (Globals::isHooked) {
+				//Hook::unhook(reinterpret_cast<uintptr_t>(&test));
+			}
 			Sleep(1);
 		}
 	}
 
-	void aimbot(Entity entity) {
-
+	void aimbot() {
+		Entity* closest_entity = closestEntity();
+		
 	}
 	void noRecoil() {
 

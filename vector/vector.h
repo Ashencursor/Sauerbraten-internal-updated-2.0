@@ -1,7 +1,11 @@
 #pragma once
 #include "../pch.h"
 
-//vector.h
+class Vector2 {
+    float x{};
+    float y{};
+};
+
 class Vector3 {
 public:
     float x;
@@ -28,3 +32,9 @@ public:
     }
 };
 
+class Vector4 {
+    float x{};
+    float y{};
+    float z{};
+    float w{};
+};

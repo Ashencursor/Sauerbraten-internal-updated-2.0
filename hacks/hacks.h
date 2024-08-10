@@ -17,6 +17,6 @@ namespace Hacks {
 
 	//Check whether a key is pressed and to execute a function
 	void checkHack();
-	void aimbot(Entity entity);
+	void aimbot();
 	void noRecoil();
 }
