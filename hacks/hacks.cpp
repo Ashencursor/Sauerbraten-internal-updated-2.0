@@ -18,6 +18,8 @@ namespace Hacks {
 				continue;
 			if (entity->team == Hacks::localPlayer->team)
 				continue;
+			if (entity == Hacks::localPlayer)
+				continue;
 			
 			float distance = localPlayer->position.distance(entity->position);
 			if (distance < closestDist) {
@@ -25,6 +27,7 @@ namespace Hacks {
 				closestEnt = entity;
 			}
 		}
+		//std::cout << closestEnt; This causes a crash
 		return closestEnt;
 	}
 
@@ -58,7 +61,9 @@ namespace Hacks {
 
 	void aimbot() {
 		Entity* closest_entity = closestEntity();
-		
+		Vector3 delta = Hacks::localPlayer->getDelta(closest_entity);
+
+
 	}
 	void noRecoil() {
 
