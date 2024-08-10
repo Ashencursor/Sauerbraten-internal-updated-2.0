@@ -144,7 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Entity\entity.h" />
-    <ClInclude Include="Error\error.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="globals\globals.h" />
     <ClInclude Include="hacks\hacks.h" />
@@ -154,7 +153,6 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Entity\entity.cpp" />
-    <ClCompile Include="Error\error.cpp" />
     <ClCompile Include="hacks\hacks.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

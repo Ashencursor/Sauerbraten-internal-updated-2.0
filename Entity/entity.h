@@ -45,7 +45,7 @@ public:
 		 return isAlive && displayHealth > 0 && displayHealth < 1000 && this != nullptr;
 	}
 
-	bool isValid();
+	//bool isValid();
 	bool isGood();
 	bool isEvil();
 	Vector3 getDelta(Entity* entity);

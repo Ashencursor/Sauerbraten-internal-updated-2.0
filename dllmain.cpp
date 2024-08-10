@@ -16,12 +16,9 @@ BOOL WINAPI newThread(HMODULE hModule) {
     while (true) {
 
         Hacks::checkHack();
-        Entity* entity = reinterpret_cast<Entity*>(Hacks::entityList[0]);
-        if (entity) {
-            entity->yaw++;
-        }
+
         
-        Sleep(100);
+        Sleep(1);
     }
 
 
