@@ -13,9 +13,6 @@ namespace Hacks {
 		auto closestDist = FLT_MAX; // Initialize with max float value
 		/*
 		for (int i = 0; i < 31; i++) {
-			if (entityList[i] == NULL)
-				continue;
-
 			auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
 
 			if (!entity)
@@ -31,7 +28,6 @@ namespace Hacks {
 				closestEnt = entity;
 			}
 		}*/
-		//std::cout << closestEnt; This causes a crash
 		return closestEnt;
 	}
 
@@ -71,11 +67,11 @@ namespace Hacks {
 		if (localPlayer) {
 			//Calculate yaw
 			float _yaw = std::atan2f(delta.y, delta.x) * (180.0 / std::numbers::pi_v<float>);
-			localPlayer->yaw = _yaw;
+			localPlayer->yaw = _yaw + 270;
 
 			//Calculate pitch
 			float hypotenuse = std::hypot(delta.x, delta.y);
-			float _pitch = std::atan2f(-delta.z, hypotenuse) * (180.0 / std::numbers::pi_v<float>);
+			float _pitch = std::atan2f(delta.z, hypotenuse) * (180.0 / std::numbers::pi_v<float>);
 			localPlayer->pitch = _pitch;
 		}
 
