@@ -9,11 +9,15 @@ namespace Hacks {
 
 	//Find the closest Entity
 	Entity& closestEntity() {
-		auto& closestEnt = *reinterpret_cast<Entity*>(entityList[0]);
+		auto& closestEnt = *reinterpret_cast<Entity*>(entityList[1]);
 		auto closestDist = FLT_MAX; // Initialize with max float value
-
+		/*
 		for (int i = 0; i < 31; i++) {
-				auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
+			if (entityList[i] == NULL)
+				continue;
+
+			auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
+
 			if (!entity)
 				continue;
 			if (entity.team == localPlayer->team)
@@ -26,7 +30,7 @@ namespace Hacks {
 				closestDist = distance;
 				closestEnt = entity;
 			}
-		}
+		}*/
 		//std::cout << closestEnt; This causes a crash
 		return closestEnt;
 	}
@@ -66,7 +70,7 @@ namespace Hacks {
 		//This causes crash atm
 		if (localPlayer) {
 			//Calculate yaw
-			float _yaw = std::atan2f(delta.y, delta.x) * (180.0 / std::numbers::pi_v<float>) + 90;
+			float _yaw = std::atan2f(delta.y, delta.x) * (180.0 / std::numbers::pi_v<float>);
 			localPlayer->yaw = _yaw;
 
 			//Calculate pitch
