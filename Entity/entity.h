@@ -37,18 +37,47 @@ public:
 	int32_t N000005E8; //0x0373
 	int8_t N00000DF0; //0x0377
 	char team[4]; //0x0378
-	char pad_037C[4744]; //0x037C
-
 
 	//IF I am out of a match or something this will not work because my health could be anything ect
+
+	//copy constructor
+	Entity(Entity& other) {
+		if (this != &other) {
+			memcpy(this, &other, sizeof(Entity));
+		}
+	}
+	//mov constructor, but am i missing something?
+	Entity(Entity&& other) noexcept {
+		memcpy(this, &other, sizeof(Entity));
+
+		memset(&other, 0, sizeof(Entity));
+	}
+
+	//Operator overloads(some use operator overloads from vector.h)
+	bool operator==(Entity& other) const {
+		return this->position == other.position;
+	}
 	explicit operator bool() const {
 		 return isAlive && displayHealth > 0 && displayHealth < 1000 && this != nullptr;
+	}
+	Entity& operator=(const Entity& other) {
+		if (this != &other) {  
+			std::memcpy(this, &other, sizeof(Entity));
+		}
+		return *this;
+	}
+	Entity& operator=(Entity&& other) noexcept {
+		if (this != &other) {
+			std::memcpy(this, &other, sizeof(Entity));
+
+			std::memset(&other, 0, sizeof(Entity));
+		}
 	}
 
 	//bool isValid();
 	bool isGood();
 	bool isEvil();
-	Vector3 getDelta(Entity* entity);
+	Vector3 getDelta(Entity& entity);
 
 }; //Size: 0x1604
 //static_assert(sizeof(Entity) == 0x1604);

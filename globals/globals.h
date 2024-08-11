@@ -12,8 +12,8 @@ namespace Globals
 
 	//hooking
 	namespace Hook {
-		inline HMODULE Opengl = GetModuleHandle(L"opengl32.dll");
-		inline uintptr_t swapBuffersPtr =
+		inline const auto Opengl = GetModuleHandle(L"opengl32.dll");
+		inline const auto swapBuffersPtr =
 			reinterpret_cast<uintptr_t>(GetProcAddress(Opengl, "wglSwapBuffers"));
 	}
 }

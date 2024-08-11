@@ -20,9 +20,14 @@ public:
     constexpr Vector3 operator-(const Vector3& other) const {
         return Vector3(x - other.x, y - other.y, z - other.z);
     }
+    bool operator==(const Vector3& other) const {
+        return this->x == other.x && this->y == other.y && this->z == other.z;
+    }
+
+
 
     // Method to calculate the length of the vector
-    float length() const {//removed constexpr
+    float length() const {
         return std::sqrt(x * x + y * y + z * z);
     }
 

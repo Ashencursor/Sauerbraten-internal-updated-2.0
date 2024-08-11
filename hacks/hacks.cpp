@@ -2,24 +2,26 @@
 #include "hacks.h"
 #include "../hook/hook.h"
 
+#include <limits>
+#include <numbers>
 
 namespace Hacks {
 
 	//Find the closest Entity
-	Entity* closestEntity() {
-		Entity* closestEnt = nullptr;
-		float closestDist = FLT_MAX;
+	Entity& closestEntity() {
+		auto& closestEnt = *reinterpret_cast<Entity*>(entityList[0]);
+		auto closestDist = FLT_MAX; // Initialize with max float value
 
 		for (int i = 0; i < 31; i++) {
-			Entity* entity = reinterpret_cast<Entity*>(entityList[i]);
+				auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
 			if (!entity)
 				continue;
-			if (entity->team == Hacks::localPlayer->team)
+			if (entity.team == localPlayer->team)
 				continue;
-			if (entity == Hacks::localPlayer)
+			if (&entity == localPlayer)
 				continue;
 
-			float distance = localPlayer->position.distance(entity->position);
+			float distance = localPlayer->position.distance(entity.position);
 			if (distance < closestDist) {
 				closestDist = distance;
 				closestEnt = entity;
@@ -58,25 +60,24 @@ namespace Hacks {
 	}
 
 	void aimbot() {
-		Entity* closest_entity = closestEntity();
+		auto& closest_entity = closestEntity();
 		Vector3 delta = localPlayer->getDelta(closest_entity);
-
 
 		//This causes crash atm
 		if (localPlayer) {
 			//Calculate yaw
-			float _yaw = std::atan2f(delta.y, delta.x) * (180.0 / 3.14159265358979323846) + 90;
+			float _yaw = std::atan2f(delta.y, delta.x) * (180.0 / std::numbers::pi_v<float>) + 90;
 			localPlayer->yaw = _yaw;
 
 			//Calculate pitch
 			float hypotenuse = std::hypot(delta.x, delta.y);
-			float _pitch = std::atan2f(-delta.z, hypotenuse) * (180.0 / 3.14159265358979323846);
+			float _pitch = std::atan2f(-delta.z, hypotenuse) * (180.0 / std::numbers::pi_v<float>);
 			localPlayer->pitch = _pitch;
 		}
 
 		Sleep(1);
 	}
-
+	//Nop pitch
 	void noRecoil() {
 
 	}
