@@ -1,0 +1,23 @@
+#pragma once
+
+VirtualProtect(adr_to_effect, size, effect, previousProtectionValueOfFirstPage)
+
+The constant 0x1000 in the call to VirtualProtect() represents 
+the size of the memory region (in bytes) for which the protection attributes are being set.
+The value 0x1000 is equivalent to 4096 in decimal, 
+which is the size of a memory page on many systems (commonly referred to as a "page size").
+Check: https://en.wikipedia.org/wiki/Page_%28computer_memory%29
+
+Info on PAGE macros used in VirtualProtect 'effect':
+https://learn.microsoft.com/en-us/windows/win32/memory/memory-protection-constants
+
+
+
+
+
+
+
+-----------------------------------
+Information on std::algorithm:
+
+

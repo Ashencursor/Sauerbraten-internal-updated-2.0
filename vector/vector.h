@@ -24,7 +24,35 @@ public:
         return this->x == other.x && this->y == other.y && this->z == other.z;
     }
 
-
+    // Copy construcor
+    Vector3(const Vector3& other) : x{ other.x }, y{ other.y }, z{ other.z } {}
+    // Copy assingment operator
+    Vector3& operator=(const Vector3& other) {
+        if (this != &other) {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+        }
+        return *this;
+    }
+    // Move constructor
+    Vector3(Vector3&& other) noexcept : x{ other.x }, y{ other.y }, z{ other.z } {
+        other.x = 0;
+        other.y = 0;
+        other.z = 0;
+    }
+    // Move assingment operator
+    Vector3 operator=(Vector3&& other) noexcept {
+        if (this != &other) {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+            other.x = 0;
+            other.y = 0;
+            other.z = 0;
+        }
+        return *this;
+    }
 
     // Method to calculate the length of the vector
     float length() const {

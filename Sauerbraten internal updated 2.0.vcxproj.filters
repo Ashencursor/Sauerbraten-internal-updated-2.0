@@ -33,6 +33,9 @@
     <ClInclude Include="Entity\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mem\mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -47,5 +50,11 @@
     <ClCompile Include="Entity\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hacks\aimbot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="notes.txt" />
   </ItemGroup>
 </Project>

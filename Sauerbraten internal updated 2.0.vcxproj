@@ -147,12 +147,14 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="globals\globals.h" />
     <ClInclude Include="hacks\hacks.h" />
+    <ClInclude Include="mem\mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="vector\vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Entity\entity.cpp" />
+    <ClCompile Include="hacks\aimbot.cpp" />
     <ClCompile Include="hacks\hacks.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -160,6 +162,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="notes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

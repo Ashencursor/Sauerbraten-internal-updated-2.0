@@ -40,38 +40,58 @@ public:
 
 	//IF I am out of a match or something this will not work because my health could be anything ect
 
+
+	//Operator overloads(some use operator overloads from vector.h)
+	bool operator==(const Entity& other) const {
+		return this->position == other.position;
+	}
+	explicit operator bool() const {
+		return isAlive && displayHealth > 0 && displayHealth < 1000;
+	}
+
 	//copy constructor
-	Entity(Entity& other) {
+	Entity(const Entity& other) {
 		if (this != &other) {
-			memcpy(this, &other, sizeof(Entity));
+			memcpy(this, &other, sizeof(Entity));//*this = other
 		}
 	}
-	//mov constructor, but am i missing something?
+	//copy assignment
+	Entity& operator=(const Entity& other) {
+		if (this != &other) {  
+			// Manually assign each member variable
+			position = other.position;
+			yaw = other.yaw;
+			pitch = other.pitch;
+			isAlive = other.isAlive;
+			marker = other.marker;
+			displayHealth = other.displayHealth;
+			currentWeapon = other.currentWeapon;
+			isShooting = other.isShooting;
+			random = other.random;
+			shotGun = other.shotGun;
+			miniGun = other.miniGun;
+			rocketLauncher = other.rocketLauncher;
+			sniper = other.sniper;
+			grenadeLauncher = other.grenadeLauncher;
+			pistol = other.pistol;
+		}
+		return *this;
+	}
+
+	//move constructor
 	Entity(Entity&& other) noexcept {
 		memcpy(this, &other, sizeof(Entity));
 
 		memset(&other, 0, sizeof(Entity));
 	}
-
-	//Operator overloads(some use operator overloads from vector.h)
-	bool operator==(Entity& other) const {
-		return this->position == other.position;
-	}
-	explicit operator bool() const {
-		 return isAlive && displayHealth > 0 && displayHealth < 1000 && this != nullptr;
-	}
-	Entity& operator=(const Entity& other) {
-		if (this != &other) {  
-			std::memcpy(this, &other, sizeof(Entity));
-		}
-		return *this;
-	}
+	//move assingment
 	Entity& operator=(Entity&& other) noexcept {
 		if (this != &other) {
 			std::memcpy(this, &other, sizeof(Entity));
 
 			std::memset(&other, 0, sizeof(Entity));
 		}
+		return *this;
 	}
 
 	//bool isValid();

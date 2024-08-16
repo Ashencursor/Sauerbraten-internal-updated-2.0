@@ -11,9 +11,15 @@ namespace Globals
 	inline bool aimbot = false;
 
 	//hooking
-	namespace Hook {
+	namespace Hook 
+	{
 		inline const auto Opengl = GetModuleHandle(L"opengl32.dll");
 		inline const auto swapBuffersPtr =
 			reinterpret_cast<uintptr_t>(GetProcAddress(Opengl, "wglSwapBuffers"));
+	}
+
+	namespace mem
+	{
+		
 	}
 }
