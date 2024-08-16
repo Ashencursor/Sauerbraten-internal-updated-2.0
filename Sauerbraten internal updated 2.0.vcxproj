@@ -147,6 +147,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="globals\globals.h" />
     <ClInclude Include="hacks\hacks.h" />
+    <ClInclude Include="hook\hook.h" />
     <ClInclude Include="mem\mem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="vector\vector.h" />

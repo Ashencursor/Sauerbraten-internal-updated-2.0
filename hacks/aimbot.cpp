@@ -1,18 +1,20 @@
 #include "hacks.h"
 #include "../pch.h"
 #include <numbers>
+#include <limits>
+#include <iostream>
 
 namespace Hacks {
 
 	//Find the closest Entity
-	Entity& closestEntity() {
-		auto closestEnt = *reinterpret_cast<Entity*>(entityList[1]);
-		auto closestDist = FLT_MAX; // Initialize with max float value
-		
-		for (int i = 0; i < 32; i++) {
-			auto entity = *reinterpret_cast<Entity*>(entityList[i]);
+	Entity closestEntity() {
+		auto& closestEnt = *reinterpret_cast<Entity*>(entityList[1]);
+		float closestDist = FLT_MAX;
 
-			if (!entity || &entity == localPlayer)
+		for (int i = 0; i < 32; i++) {
+			const auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
+
+			if (!entity || entity == *reinterpret_cast<Entity*>(entityList[0]))
 				continue;
 
 			float distance = localPlayer->position.distance(entity.position);
@@ -26,7 +28,7 @@ namespace Hacks {
 
 
 	void aimbot() {
-		auto& closest_entity = closestEntity();
+		auto closest_entity = closestEntity();
 		Vector3 delta = localPlayer->getDelta(closest_entity);
 
 		//This causes crash atm

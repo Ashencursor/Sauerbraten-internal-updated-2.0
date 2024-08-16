@@ -34,8 +34,4 @@ namespace Hacks {
 			Sleep(1);
 		}
 	}
-	//Nop pitch
-	void noRecoil() {
-
-	}
 }

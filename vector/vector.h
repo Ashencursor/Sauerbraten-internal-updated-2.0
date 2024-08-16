@@ -2,27 +2,40 @@
 #include "../pch.h"
 
 class Vector2 {
+public:
     float x{};
     float y{};
+
+    constexpr Vector2() : x{ 0 }, y{ 0 } {}
+    friend constexpr Vector2 operator-(const Vector2 lhs, const Vector2& rhs)  {
+        return Vector2(lhs.x - rhs.x, lhs.y - rhs.y);
+    }
+
+    constexpr Vector2(float _x, float _y) : x{ _x }, y{ _y } {}
+    Vector2& operator=(const Vector2& other) {
+        if (this != &other) {
+            x = other.x;
+            y = other.y;
+        }
+        return *this;
+    }
 };
 
 class Vector3 {
 public:
-    float x;
-    float y;
-    float z;
+    float x{};
+    float y{};
+    float z{};
 
     // Constructor
     constexpr Vector3() : x(0), y(0), z(0) {}
     constexpr Vector3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
 
     // operator- overload
-    constexpr Vector3 operator-(const Vector3& other) const {
-        return Vector3(x - other.x, y - other.y, z - other.z);
+    friend constexpr Vector3 operator-(const Vector3& lhs, const Vector3& rhs)  {
+        return Vector3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
     }
-    bool operator==(const Vector3& other) const {
-        return this->x == other.x && this->y == other.y && this->z == other.z;
-    }
+    friend bool operator==(const Vector3& lhs, const Vector3& rhs) = default;
 
     // Copy construcor
     Vector3(const Vector3& other) : x{ other.x }, y{ other.y }, z{ other.z } {}
@@ -42,7 +55,7 @@ public:
         other.z = 0;
     }
     // Move assingment operator
-    Vector3 operator=(Vector3&& other) noexcept {
+    Vector3& operator=(Vector3&& other) noexcept {
         if (this != &other) {
             x = other.x;
             y = other.y;

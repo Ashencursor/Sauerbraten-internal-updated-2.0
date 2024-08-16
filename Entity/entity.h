@@ -43,7 +43,7 @@ public:
 
 	//Operator overloads(some use operator overloads from vector.h)
 	bool operator==(const Entity& other) const {
-		return this->position == other.position;
+		return this == &other;
 	}
 	explicit operator bool() const {
 		return isAlive && displayHealth > 0 && displayHealth < 1000;
@@ -52,7 +52,21 @@ public:
 	//copy constructor
 	Entity(const Entity& other) {
 		if (this != &other) {
-			memcpy(this, &other, sizeof(Entity));//*this = other
+			position = other.position;
+			yaw = other.yaw;
+			pitch = other.pitch;
+			isAlive = other.isAlive;
+			marker = other.marker;
+			displayHealth = other.displayHealth;
+			currentWeapon = other.currentWeapon;
+			isShooting = other.isShooting;
+			random = other.random;
+			shotGun = other.shotGun;
+			miniGun = other.miniGun;
+			rocketLauncher = other.rocketLauncher;
+			sniper = other.sniper;
+			grenadeLauncher = other.grenadeLauncher;
+			pistol = other.pistol;//*this = other
 		}
 	}
 	//copy assignment
@@ -80,24 +94,48 @@ public:
 
 	//move constructor
 	Entity(Entity&& other) noexcept {
-		memcpy(this, &other, sizeof(Entity));
+		position = other.position;
+		yaw = other.yaw;
+		pitch = other.pitch;
+		isAlive = other.isAlive;
+		marker = other.marker;
+		displayHealth = other.displayHealth;
+		currentWeapon = other.currentWeapon;
+		isShooting = other.isShooting;
+		random = other.random;
+		shotGun = other.shotGun;
+		miniGun = other.miniGun;
+		rocketLauncher = other.rocketLauncher;
+		sniper = other.sniper;
+		grenadeLauncher = other.grenadeLauncher;
+		pistol = other.pistol;
 
 		memset(&other, 0, sizeof(Entity));
 	}
 	//move assingment
 	Entity& operator=(Entity&& other) noexcept {
 		if (this != &other) {
-			std::memcpy(this, &other, sizeof(Entity));
+			position = other.position;
+			yaw = other.yaw;
+			pitch = other.pitch;
+			isAlive = other.isAlive;
+			marker = other.marker;
+			displayHealth = other.displayHealth;
+			currentWeapon = other.currentWeapon;
+			isShooting = other.isShooting;
+			random = other.random;
+			shotGun = other.shotGun;
+			miniGun = other.miniGun;
+			rocketLauncher = other.rocketLauncher;
+			sniper = other.sniper;
+			grenadeLauncher = other.grenadeLauncher;
+			pistol = other.pistol;
 
 			std::memset(&other, 0, sizeof(Entity));
 		}
 		return *this;
 	}
-
-	//bool isValid();
-	bool isGood();
-	bool isEvil();
-	Vector3 getDelta(Entity& entity);
+	Vector3 getDelta(const Entity& entity) const;
 
 }; //Size: 0x1604
 //static_assert(sizeof(Entity) == 0x1604);
