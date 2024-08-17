@@ -19,6 +19,7 @@ public:
         }
         return *this;
     }
+
 };
 
 class Vector3 {
@@ -79,6 +80,7 @@ public:
 };
 
 class Vector4 {
+public:
     float x{};
     float y{};
     float z{};

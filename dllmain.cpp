@@ -37,7 +37,7 @@ BOOL WINAPI newThread(HMODULE hModule) {
 // Entry point for DLL
 BOOL APIENTRY DllMain(HMODULE hModule,// Module that is loaded to address space of process. Basically the adr of the dll
     DWORD  ul_reason_for_call,
-    LPVOID lpReserved
+    void* lpReserved
 )
 {
     switch (ul_reason_for_call)

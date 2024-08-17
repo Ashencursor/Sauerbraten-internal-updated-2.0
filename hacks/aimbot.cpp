@@ -3,16 +3,17 @@
 #include <numbers>
 #include <limits>
 #include <iostream>
+#include <vector>
 
 namespace Hacks {
 
 	//Find the closest Entity
-	Entity closestEntity() {
+	Entity& closestEntity() {
 		auto& closestEnt = *reinterpret_cast<Entity*>(entityList[1]);
 		float closestDist = FLT_MAX;
 
 		for (int i = 0; i < 32; i++) {
-			const auto& entity = *reinterpret_cast<Entity*>(entityList[i]);
+			auto& entity = *reinterpret_cast<Entity*>(entityList[i]);//no reference
 
 			if (!entity || entity == *reinterpret_cast<Entity*>(entityList[0]))
 				continue;
@@ -28,7 +29,7 @@ namespace Hacks {
 
 
 	void aimbot() {
-		auto closest_entity = closestEntity();
+		auto& closest_entity = closestEntity();
 		Vector3 delta = localPlayer->getDelta(closest_entity);
 
 		//This causes crash atm

@@ -72,7 +72,6 @@ public:
 	//copy assignment
 	Entity& operator=(const Entity& other) {
 		if (this != &other) {  
-			// Manually assign each member variable
 			position = other.position;
 			yaw = other.yaw;
 			pitch = other.pitch;

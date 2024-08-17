@@ -16,7 +16,7 @@ namespace Hacks {
 
 	//helper functions
 	//Find the closest Entity
-	Entity closestEntity();
+	Entity& closestEntity();
 
 	// clampPY(float pitch, float yaw);
 	//Check whether a key is pressed and to execute a function
